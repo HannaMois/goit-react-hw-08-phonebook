@@ -8,19 +8,15 @@ import {
   DeleteButton,
 } from './Contacts.styled';
 
-const Contacts = ({ contacts, filter, filteredContacts, deleteContact }) => {
-  let rendered = filter === '' ? contacts : filteredContacts();
+const Contacts = ({ contacts, deleteContact }) => {
   return (
     <ContactsList>
-      {rendered.map(({ name, id, number }) => (
+      {contacts.map(({ name, id, number }) => (
         <ListItem key={id} id={id}>
           <ContactName>{name} </ContactName>
           <ContactPhone>{number}</ContactPhone>
 
-          <DeleteButton
-            onClick={evt => deleteContact(evt)}
-            aria-label="delete contact"
-          >
+          <DeleteButton onClick={deleteContact} aria-label="delete contact">
             Delete
           </DeleteButton>
         </ListItem>
@@ -30,15 +26,13 @@ const Contacts = ({ contacts, filter, filteredContacts, deleteContact }) => {
 };
 
 Contacts.propTypes = {
-  filter: PropTypes.string.isRequired,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
-    }).isRequired
+    })
   ).isRequired,
-  filteredContacts: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
 };
 

@@ -7,7 +7,7 @@ class Filter extends Component {
     return (
       <FilterWrapper>
         <FilterText>Find contacts by name</FilterText>
-        <FilterInput name="filter" onChange={evt => this.props.onInput(evt)} />
+        <FilterInput name="filter" onChange={this.props.onInput} />
       </FilterWrapper>
     );
   }
