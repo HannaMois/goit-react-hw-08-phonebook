@@ -29,7 +29,8 @@ export const FormInputName = styled.input`
   margin-top: ${props => props.theme.space.l};
   margin-bottom: ${props => props.theme.space.l};
   border-radius: ${props => props.theme.radii.radius};
-  border: ${props => props.theme.borderWidths.w} solid transparent;
+  border: ${props => props.theme.borderWidths.w} solid
+    ${props => props.theme.colors.secondColor};
   outline: none;
 `;
 
@@ -42,7 +43,8 @@ export const FormInputTel = styled.input`
   margin-bottom: ${props => props.theme.space.l};
   align-items: center;
   border-radius: ${props => props.theme.radii.radius};
-  border: ${props => props.theme.borderWidths.w} solid transparent;
+  border: ${props => props.theme.borderWidths.w} solid
+    ${props => props.theme.colors.secondColor};
   outline: none;
 `;
 
@@ -51,8 +53,8 @@ export const FormButton = styled.button`
   align-items: center;
   padding: ${props => props.theme.space.s};
   font-weight: ${props => props.theme.fontWeights.l};
-  color: ${props => props.theme.colors.mainColorText};
-  background-color: ${props => props.theme.colors.whiteColor};
+  color: ${props => props.theme.colors.whiteColor};
+  background-color: ${props => props.theme.colors.secondColor};
   border: ${props => props.theme.borderWidths.w} solid transparent;
   outline:none;
   border-radius: ${props => props.theme.radii.radius};
@@ -62,10 +64,8 @@ export const FormButton = styled.button`
 
     &:hover,
     &:focus {
-    transform: scale(1.05);
-    background-color: ${props => props.theme.colors.secondColor};
-    color: ${props => props.theme.colors.whiteColor};
-`;
+    transform: scale(1.1);
+  `;
 
 export const ButtonSpan = styled.span`
   padding: ${props => props.theme.space.s};

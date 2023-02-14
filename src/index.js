@@ -8,10 +8,8 @@ const theme = {
   colors: {
     mainColorText: 'rgb(46, 34, 2)',
     whiteColor: '#fff',
-    secondColor: 'rgb(13, 148, 130)',
-    // secondColor: '#5592e5',
-    bgColorMain: 'rgb(210, 217, 193)',
-    // bgColorMain: '#eeaeca',
+    secondColor: '#52acff',
+    bgColorMain: 'rgb(237, 248, 250)',
   },
   fontSizes: {
     m: '40px',
