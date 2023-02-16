@@ -61,9 +61,17 @@ class App extends Component {
     this.setState({ filter: evt.currentTarget.value });
   };
 
+  // filteredContacts = () => {
+  //   return [...this.state.contacts].filter(contact =>
+  //     contact.name.toLowerCase().includes(this.state.filter.toLocaleLowerCase())
+  //   );
+  // };
+
   filteredContacts = () => {
-    return [...this.state.contacts].filter(contact =>
-      contact.name.toLowerCase().includes(this.state.filter.toLocaleLowerCase())
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
