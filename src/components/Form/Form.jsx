@@ -28,8 +28,11 @@ export default function Form({ addContact }) {
     const { name, value } = evt.currentTarget;
     if (name === 'name') {
       setName(value);
-    } else {
+      return;
+    }
+    if (name === 'number') {
       setNumber(value);
+      return;
     }
   };
 
