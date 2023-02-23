@@ -21,3 +21,10 @@ export const PhoneContacts = styled.h2`
   margin: ${props => props.theme.space.m} ${props => props.theme.space.xs};
   align-items: center;
 `;
+
+export const PhoneNoContacts = styled.p`
+  font-size: ${props => props.theme.fontSizes.s};
+  color: ${props => props.theme.colors.secondColor};
+  font-weight: ${props => props.theme.fontWeights.b};
+  text-shadow: ${props => props.theme.mainColorText} 1px 0 10px;
+`;
