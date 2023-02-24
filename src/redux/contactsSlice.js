@@ -28,10 +28,6 @@ const contactSlice = createSlice({
       },
     },
 
-    // addContacts(state, action) {
-    //   state.items.push(action.payload);
-    // },
-
     deleteContact: (state, { payload }) => {
       state.items = state.items.filter(item => item.id !== payload);
     },
@@ -43,9 +39,6 @@ const contactSlice = createSlice({
 });
 
 export const { addContact, deleteContact, setFilter } = contactSlice.actions;
-
-// export const selectContacts = state => state.contacts.items;
-// export const selectFilter = state => state.contacts.filter;
 
 const persistConfig = {
   key: 'contacts',
