@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Forms,
   FormLabel,
@@ -30,10 +32,17 @@ export default function Form() {
         contact.number === number
     );
     if (contactFinder) {
-      alert(`${name} is already in contacts.`);
+      toast.warn(`${name} is already in contacts!`);
       return;
     }
-    dispatch(addContact({ name, number }));
+    toast.success(`Сontact ${name} has been successfully added 💖`);
+    dispatch(
+      addContact({
+        name: name,
+        number: number,
+      })
+    );
+
     reset();
   };
 

@@ -1,4 +1,3 @@
-// import useLocalStorage from './Hooks/useLocalStorage';
 import {
   Wrapper,
   PhoneTitle,
@@ -8,13 +7,29 @@ import {
 import Form from './Form';
 import Contacts from './Contacts';
 import Filter from './Filter';
-import { useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-// import { useSelector } from 'react-redux';
+import { Loader } from './Loader/Loader';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectContacts, selectIsLoading, selectError } from 'redux/selectors';
+import { fetchContacts } from 'redux/operations';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  // const [contacts, setContacts] = useLocalStorage('contacts', []);
   const contacts = useSelector(selectContacts);
+  const loading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Something went wrong!!!!');
+    }
+  }, [error]);
 
   return (
     <Wrapper>
@@ -29,6 +44,13 @@ const App = () => {
           <Contacts />
         </>
       )}
+      {loading && <Loader />}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        closeOnClick
+        theme="colored"
+      />
     </Wrapper>
   );
 };
