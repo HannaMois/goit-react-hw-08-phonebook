@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/operations';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import {
+  // selectContacts,
+  // selectFilter,
+  selectFilteredContacts,
+  selectIsLoading,
+} from 'redux/selectors';
 
 import {
   ContactsList,
@@ -12,35 +17,47 @@ import {
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const filtered = useSelector(selectFilter);
+  // const contacts = useSelector(selectContacts);
+  // const filtered = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsLoading);
+  const filteredContacts = useSelector(selectFilteredContacts);
 
-  const filteredContacts = () => {
-    const normalizedFilter = filtered.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
+  // const filteredContacts = () => {
+  //   const normalizedFilter = filtered.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
 
   const deleteContacts = id => {
     dispatch(deleteContact(id));
   };
 
-  let rendered = filtered === '' ? contacts : filteredContacts();
+  // let rendered = filtered === '' ? contacts : filteredContacts();
 
   return (
     <ContactsList>
-      {rendered.map(({ name, id, number }) => (
+      {filteredContacts.map(({ name, id, number }) => (
         <ListItem key={id}>
           <ContactName>{name} </ContactName>
           <ContactPhone>{number}</ContactPhone>
 
-          <DeleteButton
-            onClick={() => deleteContacts(id)}
-            aria-label="delete contact"
-          >
-            Delete
-          </DeleteButton>
+          {isLoading ? (
+            <DeleteButton
+              onClick={() => deleteContacts(id)}
+              aria-label="delete contact"
+              disabled
+            >
+              Delete
+            </DeleteButton>
+          ) : (
+            <DeleteButton
+              onClick={() => deleteContacts(id)}
+              aria-label="delete contact"
+            >
+              Delete
+            </DeleteButton>
+          )}
         </ListItem>
       ))}
     </ContactsList>
