@@ -1,5 +1,16 @@
 import styled from '@emotion/styled';
 
+export const LabelContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const TitleLogin = styled.h1`
+  color: ${props => props.theme.colors.mainColorText};
+  font-size: 50px;
+`;
+
 export const Forms = styled.form`
   display: flex;
   flex-direction: column;
@@ -21,7 +32,7 @@ export const FormLabel = styled.label`
   color: ${props => props.theme.colors.mainColorText};
 `;
 
-export const FormInputName = styled.input`
+export const FormInputEmail = styled.input`
   display: block;
   width: ${props => props.theme.sizes.m};
   font-size: ${props => props.theme.fontSizes.xs};
@@ -34,7 +45,7 @@ export const FormInputName = styled.input`
   outline: none;
 `;
 
-export const FormInputTel = styled.input`
+export const FormInputPassword = styled.input`
   display: block;
   width: ${props => props.theme.sizes.m};
   font-size: ${props => props.theme.fontSizes.xs};

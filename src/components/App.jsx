@@ -1,28 +1,30 @@
-import {
-  Wrapper,
-  PhoneTitle,
-  PhoneContacts,
-  PhoneNoContacts,
-} from './App.styled';
-import Form from './Form';
-import Contacts from './Contacts';
-import Filter from './Filter';
-import { Loader } from './Loader/Loader';
+import { lazy, Suspense } from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectIsLoading, selectError } from 'redux/selectors';
-import { fetchContacts } from 'redux/operations';
-import { ToastContainer, toast } from 'react-toastify';
+import { Route, Routes } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import AppBar from './AppBar';
+import { Loader } from './Loader/Loader';
+import { selectError } from 'redux/contacts/selectors';
+import { selectRefreshed } from 'redux/auth/auth-selectors';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
+import { Container } from './App.styled';
+
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const ContactPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
+const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
+
 const App = () => {
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectIsLoading);
+  const isRefreshing = useSelector(selectRefreshed);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   useEffect(() => {
@@ -32,26 +34,23 @@ const App = () => {
   }, [error]);
 
   return (
-    <Wrapper>
-      <PhoneTitle>Phonebook</PhoneTitle>
-      <Form />
-      <PhoneContacts>Contacts</PhoneContacts>
-      {contacts.length === 0 ? (
-        <PhoneNoContacts>No contacts</PhoneNoContacts>
+    <Container>
+      <AppBar />
+      {isRefreshing ? (
+        <Loader />
       ) : (
-        <>
-          <Filter />
-          <Contacts />
-        </>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="contacts" element={<ContactPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
       )}
-      {loading && <Loader />}
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        closeOnClick
-        theme="colored"
-      />
-    </Wrapper>
+      ;
+    </Container>
   );
 };
 

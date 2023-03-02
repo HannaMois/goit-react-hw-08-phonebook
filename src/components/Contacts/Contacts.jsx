@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contacts/operations';
 import {
-  // selectContacts,
-  // selectFilter,
   selectFilteredContacts,
   selectIsLoading,
-} from 'redux/selectors';
+} from 'redux/contacts/selectors';
 
 import {
   ContactsList,
@@ -17,23 +15,12 @@ import {
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  // const contacts = useSelector(selectContacts);
-  // const filtered = useSelector(selectFilter);
   const isLoading = useSelector(selectIsLoading);
   const filteredContacts = useSelector(selectFilteredContacts);
-
-  // const filteredContacts = () => {
-  //   const normalizedFilter = filtered.toLowerCase();
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normalizedFilter)
-  //   );
-  // };
 
   const deleteContacts = id => {
     dispatch(deleteContact(id));
   };
-
-  // let rendered = filtered === '' ? contacts : filteredContacts();
 
   return (
     <ContactsList>

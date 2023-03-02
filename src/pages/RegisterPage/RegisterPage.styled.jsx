@@ -1,5 +1,17 @@
 import styled from '@emotion/styled';
 
+export const RegContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+export const TitleReg = styled.h1`
+  color: ${props => props.theme.colors.mainColorText};
+  font-size: 50px;
+`;
+
 export const Forms = styled.form`
   display: flex;
   flex-direction: column;
@@ -21,7 +33,7 @@ export const FormLabel = styled.label`
   color: ${props => props.theme.colors.mainColorText};
 `;
 
-export const FormInputName = styled.input`
+export const FormInputEmail = styled.input`
   display: block;
   width: ${props => props.theme.sizes.m};
   font-size: ${props => props.theme.fontSizes.xs};
@@ -34,7 +46,21 @@ export const FormInputName = styled.input`
   outline: none;
 `;
 
-export const FormInputTel = styled.input`
+export const FormInputPassword = styled.input`
+  display: block;
+  width: ${props => props.theme.sizes.m};
+  font-size: ${props => props.theme.fontSizes.xs};
+  padding: ${props => props.theme.space.m};
+  margin-top: ${props => props.theme.space.l};
+  margin-bottom: ${props => props.theme.space.l};
+  align-items: center;
+  border-radius: ${props => props.theme.radii.radius};
+  border: ${props => props.theme.borderWidths.w} solid
+    ${props => props.theme.colors.secondColor};
+  outline: none;
+`;
+
+export const FormInputName = styled.input`
   display: block;
   width: ${props => props.theme.sizes.m};
   font-size: ${props => props.theme.fontSizes.xs};
