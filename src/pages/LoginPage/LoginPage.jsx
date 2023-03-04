@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import { Loader } from 'components/Loader/Loader';
 import { login } from 'redux/auth/auth-operations';
 import { selectIsLoading, selectUserName } from 'redux/auth/auth-selectors';
 import {
-  LabelContainer,
-  TitleLogin,
   Forms,
   FormLabel,
-  FormInputEmail,
-  FormInputPassword,
+  FormInput,
   FormButton,
   ButtonSpan,
-} from './LoginPage.styled';
+} from 'components/Form/Form.styled';
+import { LabelContainer, TitleLogin } from './LoginPage.styled';
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -49,7 +46,7 @@ function LoginPage() {
       <Forms onSubmit={handleSubmit}>
         <FormLabel>
           Email:
-          <FormInputEmail
+          <FormInput
             onChange={e => setEmail(e.target.value)}
             value={email}
             type="email"
@@ -58,11 +55,13 @@ function LoginPage() {
         </FormLabel>
         <FormLabel>
           Password:
-          <FormInputPassword
+          <FormInput
             onChange={e => setPassword(e.target.value)}
             value={password}
             type="password"
             required
+            minLength={7}
+            maxLength={30}
           />
         </FormLabel>
         <FormButton disabled={isLoading} type="submit">

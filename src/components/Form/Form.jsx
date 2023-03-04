@@ -7,8 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   Forms,
   FormLabel,
-  FormInputName,
-  FormInputTel,
+  FormInput,
   FormButton,
   ButtonSpan,
 } from './Form.styled';
@@ -62,7 +61,7 @@ export default function Form() {
     <Forms onSubmit={handleSubmit} autoComplete="off">
       <FormLabel>
         Name:
-        <FormInputName
+        <FormInput
           type="text"
           name="name"
           placeholder="Rosie Simpson"
@@ -75,7 +74,7 @@ export default function Form() {
       </FormLabel>
       <FormLabel>
         Number:
-        <FormInputTel
+        <FormInput
           type="tel"
           name="number"
           placeholder="459-12-56"

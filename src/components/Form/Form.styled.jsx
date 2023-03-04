@@ -21,27 +21,13 @@ export const FormLabel = styled.label`
   color: ${props => props.theme.colors.mainColorText};
 `;
 
-export const FormInputName = styled.input`
+export const FormInput = styled.input`
   display: block;
   width: ${props => props.theme.sizes.m};
   font-size: ${props => props.theme.fontSizes.xs};
   padding: ${props => props.theme.space.m};
   margin-top: ${props => props.theme.space.l};
   margin-bottom: ${props => props.theme.space.l};
-  border-radius: ${props => props.theme.radii.radius};
-  border: ${props => props.theme.borderWidths.w} solid
-    ${props => props.theme.colors.secondColor};
-  outline: none;
-`;
-
-export const FormInputTel = styled.input`
-  display: block;
-  width: ${props => props.theme.sizes.m};
-  font-size: ${props => props.theme.fontSizes.xs};
-  padding: ${props => props.theme.space.m};
-  margin-top: ${props => props.theme.space.l};
-  margin-bottom: ${props => props.theme.space.l};
-  align-items: center;
   border-radius: ${props => props.theme.radii.radius};
   border: ${props => props.theme.borderWidths.w} solid
     ${props => props.theme.colors.secondColor};

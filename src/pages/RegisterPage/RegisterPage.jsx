@@ -4,16 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { register } from 'redux/auth/auth-operations';
 import { selectUserName } from 'redux/auth/auth-selectors';
 import {
-  RegContainer,
-  TitleReg,
   Forms,
   FormLabel,
-  FormInputEmail,
-  FormInputPassword,
   FormButton,
-  FormInputName,
+  FormInput,
   ButtonSpan,
-} from './RegisterPage.styled';
+} from 'components/Form/Form.styled';
+import { RegContainer, TitleReg } from './RegisterPage.styled';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -50,34 +47,41 @@ const RegisterPage = () => {
       <Forms onSubmit={handleSubmit}>
         <FormLabel>
           Name
-          <FormInputName
+          <FormInput
             autoComplete="off"
             type="text"
             name="name"
             value={name}
             onChange={e => setName(e.target.value)}
+            required
+            minLength={3}
+            maxLength={10}
           />
         </FormLabel>
 
         <FormLabel>
           E-mail
-          <FormInputEmail
+          <FormInput
             autoComplete="off"
             type="email"
             name="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
+            required
           />
         </FormLabel>
 
         <FormLabel>
           Password
-          <FormInputPassword
+          <FormInput
             autoComplete="off"
             type="password"
             name="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            required
+            minLength={7}
+            maxLength={30}
           />
         </FormLabel>
 
