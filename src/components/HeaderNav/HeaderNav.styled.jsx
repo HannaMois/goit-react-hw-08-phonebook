@@ -6,18 +6,21 @@ export const NavWrapper = styled.section`
   padding: 20px 0;
   margin: 0 auto;
   border-bottom: 2px solid grey;
-
   width: 100%;
 `;
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  padding: 10px;
+  padding: 5px;
   text-transform: uppercase;
   font-size: 25px;
   color: ${props => props.theme.colors.mainColorText};
   text-align: center;
   font-weight: bold;
+
+  @media screen and (min-width: 480px) {
+    padding: 10px;
+  }
 
   &:hover,
   &:focus {
